@@ -15,6 +15,14 @@ def get_cv2_image_from_data_uri(data_uri: str):
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
     return img
+    
+@app.route("/", methods=["OPTIONS"])
+def aaaa():
+    resp = make_response()
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    resp.headers['Access-Control-Allow-Headers'] = '*'
+
+    return resp
 
 @app.route("/", methods=['POST'])
 def main():
