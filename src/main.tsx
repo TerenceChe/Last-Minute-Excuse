@@ -8,6 +8,8 @@ import {
 import './index.css'
 import Root from "./routes/root";
 import Home from "./routes/Home";
+import Excuses from "./routes/excuses";
+import Upload from './routes/upload';
 
 const router = createBrowserRouter([
   {
@@ -17,8 +19,19 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
-  }
+  }, {
   
+    path: "excuses",
+    element: <Excuses />,
+  },
+  {
+    path: "upload",
+    element: <Upload />,
+    children: [{
+      path: ':text',
+      element: <Upload />
+    }]
+  }
 ]);
 
 
