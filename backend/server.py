@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-from flask import Flask, request
+from flask import Flask, make_response, request
 from base64 import b64decode, b64encode
 
 app = Flask(__name__)
@@ -62,6 +62,9 @@ def main():
 
     combined = cv2.cvtColor(combined, cv2.COLOR_BGR2RGB)
 
-    return {
+    resp = make_response({
         "image": f"data:image/jpeg;base64,{b64encode(cv2.imencode('.jpg', combined)[1].tostring()).decode('utf-8')}"
-    }
+    }) #here you could use make_response(render_template(...)) too
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+
+    return resp
