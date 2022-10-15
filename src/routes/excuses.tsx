@@ -1,7 +1,11 @@
+import { Button } from '@mui/material';
+import { Container } from '@mui/system';
 import { useState } from 'react';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 export default function Excuses() {
+    const navigate = useNavigate();
+
     const needExcusesForList = [
         "missed assignment",
         "missed class",
@@ -44,47 +48,23 @@ export default function Excuses() {
     }
 
     const [resList, setResList] = useState(getExcuses(4));
-    const [selected, setSelected] = useState(NaN);
 
     function refreshResults() {
         setResList(getExcuses(4));
     }
 
-    async function submit() {
-        if (isNaN(selected)) {
-            // dont do anything
-        }
-        else {
-            console.log(selected)
-        }
+    function select(text: string) {
+        navigate(`/upload/${window.encodeURIComponent(text)}`)
     }
-
-    function select(index: number) {
-        setSelected(index);
-    }
-
 
     return (
-        <div>
-            <div id="excuse" onClick={() => select(0)}>
-                <img></img>
-                <h4>{resList[0]}</h4>
+        <Container>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                {resList.map((text, i) => <Button key={i} onClick={() => select(text)}>{text}</Button>)}
+                <Button variant="outlined" onClick={refreshResults}>New Results</Button>
             </div>
-            <div id="excuse" onClick={() => select(1)}>
-                <img></img>
-                <h4>{resList[1]}</h4>
-            </div>
-            <div id="excuse" onClick={() => select(2)}>
-                <img></img>
-                <h4>{resList[2]}</h4>
-            </div>
-            <div id="excuse" onClick={() => select(3)}>
-                <img></img>
-                <h4>{resList[3]}</h4>
-            </div>
-            <button onClick={refreshResults}>New Results</button>
-            <button onClick={submit}>Submit</button>
-        </div>
+        </Container>
+
     )
 
 }
