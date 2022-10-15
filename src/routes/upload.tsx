@@ -1,9 +1,18 @@
-import { useState } from 'react';
 import { Container } from '@mui/system';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useState } from 'react';
+import { useParams } from 'react-router-dom'
+import { getImages } from '../api/image-search';
+import { useEffectOnce } from '../hooks/use-effect-once';
 
 export default function Upload() {
     const params = useParams();
+    const [images, setImages] = useState<string[]>([]);
 
-    return <Container>{params.text}</Container>;
+    useEffectOnce(() => {
+        if (params.text) {
+            getImages(params.text).then(images => setImages(images));
+        }
+    });
+
+    return <Container>{images.map((image, i) => <img key={i} src={image}></img>)}</Container>;
 }
