@@ -8,7 +8,7 @@ const key = 'e95d925:94g75d19bg617:dfbg444c2c'.split('').map(c => String.fromCha
 
 const backend = new URL('http://localhost:5000');
 
-async function getImages(text: string): Promise<string[]> {
+async function getImages(text: string, person: string): Promise<string[]> {
     const url = new URL("https://api.bing.microsoft.com/v7.0/images/search");
     url.searchParams.append('q', text);
     url.searchParams.append('cc', 'CA');
@@ -18,7 +18,7 @@ async function getImages(text: string): Promise<string[]> {
         'Ocp-Apim-Subscription-Key': key,
     });
 
-    const images: { thumbnailUrl: string }[] = data.value.slice(0, 10);
+    const images: { thumbnailUrl: string }[] = data.value.slice(0, 4);
 
     return Promise.all(images.map(async ({thumbnailUrl}) => {
         const blob = await getImageFromUrl(thumbnailUrl);
@@ -34,7 +34,7 @@ async function getImages(text: string): Promise<string[]> {
             reader.onabort = reject
         });
 
-        const result = await requester.post(backend, { background: dataUri, image: image.person });
+        const result = await requester.post(backend, { background: dataUri, image: person });
 
         return result.image;
     }));
