@@ -1,43 +1,38 @@
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import rootCSS from './CSS/root.module.css';
+import { Link } from 'react-router-dom';
+import bgVideo from '../clock.mp4';
 export default function Root() {
     return (
-        <>
-            <div id="sidebar">
-                <h1>React Router Contacts</h1>
-                <div>
-                    <form id="search-form" role="search">
-                        <input
-                            id="q"
-                            aria-label="Search contacts"
-                            placeholder="Search"
-                            type="search"
-                            name="q"
-                        />
-                        <div
-                            id="search-spinner"
-                            aria-hidden
-                            hidden={true}
-                        />
-                        <div
-                            className="sr-only"
-                            aria-live="polite"
-                        ></div>
-                    </form>
-                    <form method="post">
-                        <button type="submit">New</button>
-                    </form>
+        <div className={rootCSS.container}>
+            <header className={rootCSS.header}>
+                <h1> Excuse Generator</h1>
+            </header>
+            <video autoPlay muted loop className={rootCSS.myVideo}>
+                <source src={bgVideo} type="video/mp4" />
+            </video>
+
+            <form className={rootCSS.loginarea}>
+
+                <input className={rootCSS.credentials} type="username" placeholder="Username...">
+                </input>
+                <br></br>
+
+                <input id={rootCSS.password} type="password" placeholder="Password..."
+                >
+                </input>
+                <br></br>
+
+                <div className={rootCSS.login}>
+                    <Link className={rootCSS.loginlink} to="/home">Login</Link>
                 </div>
-                <nav>
-                    <ul>
-                        <li>
-                            <a href={`contacts/1`}>Your Name</a>
-                        </li>
-                        <li>
-                            <a href={`contacts/2`}>Your Friend</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div id="detail"></div>
-        </>
+                
+
+            </form >
+
+
+
+        </div>
     );
 }

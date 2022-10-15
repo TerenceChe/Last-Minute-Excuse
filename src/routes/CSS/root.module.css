@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.header{
+    background-color: slategrey;
+    text-align: center;
+    color: white;
+    height: 50px;
+}
+
+
+
+.login {
+    background-color: white;
+    cursor: pointer;
+    transition: 1s;
+    width: 240px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    height: 36px;
+    position: relative;
+    border-radius: 6px;
+    transition: 1s;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .login:hover {
+    opacity: 0.85;
+  }
+  
+  .loginlink {
+    color: slategrey;
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+  }
+  
+  .loginlink:hover {
+    color: white;
+  }
+  
+  
+  .credentials,
+  #password {
+    height: 36px;
+    width: 240px;
+  }
+  
+  .credentials {
+    margin-top: 20%;
+  }
+  
+  #password {
+    margin-top: 5%;
+  }
+  
+  .loginarea {
+    height: 400px;
+    width: 400px;
+    text-align: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10%;
+    border-radius: 10px;
+    border: none;
+  }
+  
+  .loginheader {
+    height: 100px;
+    background-color: slategrey;
+    text-align: center;
+    position: relative;
+  
+  }
+  
+  .loginheader h2 {
+    position: absolute;
+    color: white;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  
+  }
+
+ 
+  
+  .myVideo{
+    height: calc(100% - 50px);
+    position: absolute;
+    object-fit: fill;
+    width: 100%;
+  }
