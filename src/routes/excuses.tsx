@@ -43,12 +43,40 @@ export default function Excuses() {
         'caught covid'
     ]
 
+    const locationList = [
+        'bus stop',
+        'hospital',
+        'hospital',
+        'hostpial',
+        'bed',
+        'hospital',
+        'full parking lot',
+        'hospital',
+        'school',
+        'traffic',
+        'broken skateboard',
+        'family vacation',
+        'bed',
+        'meditation',
+        'dog ate my homework',
+        'dark room',
+        'hospital',
+        'hospital',
+        'cat',
+        'clock',
+        'hostpial',
+        'positive covid test'
+    ]
+
+    const [resLocationList, setResLocationList] = useState(() => locationList.slice(0, 4));
+
     function getExcuses(n: number) {
         if (i + n > excuseList.length) {
             setI(0);
         } else {
             setI(i + n);
         }
+        setResLocationList(locationList.slice(i, i + n));
         return excuseList.slice(i, i + n);
     }
 
@@ -65,7 +93,7 @@ export default function Excuses() {
     return (
         <Container>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                {resList.map((text, i) => <Button key={i} onClick={() => select(text)}>{text}</Button>)}
+                {resList.map((text, i) => <Button key={i} onClick={() => select(resLocationList[i])}>{text}</Button>)}
                 <Button variant="outlined" onClick={refreshResults}>New Results</Button>
             </div>
         </Container>
