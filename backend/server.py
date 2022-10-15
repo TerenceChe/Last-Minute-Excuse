@@ -71,27 +71,20 @@ def main():
     rect = (50,50,450,290)
     cv2.grabCut(img,mask,rect,bgdModel,fgdModel,10,cv2.GC_INIT_WITH_RECT)
     mask2 = np.where((mask==2)|(mask==0),0,1).astype('uint8')
-    img = img*mask2[:,:,np.newaxis]
-    # img = np.dstack( ( img, mask2 ) )
-    # img = cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
-    # img[:,:,3] = mask2
+    # Now img is cut so that anything that is not the main character is black
 
     background_img = cv2.resize(background_img, (0, 0,), fx=1, fy=ratio_height)
 
     if background_img.shape[1] - img.shape[1] > 0:
         img = cv2.copyMakeBorder(img, 0, 0, 0, background_img.shape[1] - img.shape[1], cv2.BORDER_CONSTANT, value=(0, 0, 0, 0))
-    # else:
-    #     img = cv2.copyMakeBorder(img, 0, 0, 0, img.shape[1] - background_img.shape[1], cv2.BORDER_CONSTANT, value=(0, 0, 0, 0))
-    
-    print(img.shape, background_img.shape)
-
-    combined = cv2.addWeighted(background_img, 1, img, 0.5, 0)
-
-    # overlay_transparent(background_img, img, 0, 0)
-    # combined = background_img
+        mask2 = cv2.copyMakeBorder(mask2, 0, 0, 0, background_img.shape[1] - mask2.shape[1], cv2.BORDER_CONSTANT, value=(0, 0, 0, 0))
+    # person_gray = cv2.cvtColor(mask2, cv2.COLOR_BGR2GRAY)
+    ret, person_mask = cv2.threshold(mask2, 0, 255, cv2.THRESH_BINARY)
+    person_mask = mask2 > 0.5
+    combined = background_img.copy()
+    combined[person_mask] = img[person_mask]
 
     plt.imshow(combined)
-    plt.savefig("image.png")
-
+    plt.savefig("combined.png")
     return content
 
