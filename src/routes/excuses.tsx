@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Excuses() {
     const navigate = useNavigate();
+    const [i, setI] = useState(0);
 
     const needExcusesForList = [
         "missed assignment",
@@ -18,36 +19,40 @@ export default function Excuses() {
     ]
 
     const excuseList = [
-        "dont have time",
-        "focusing on myself",
-        "too busy with school",
-        "family emergency",
-        "traffic was bad",
-        "busses skipped my stop and were delayed",
-        "no parking available",
-        "I was in the hospital",
-        "dog ate homework",
-        "cat ate homework",
-        "medical emergency",
-        "injured skateboarding",
-        "sick",
-        "lost voice",
-        "broke arm",
-        "broke leg",
-        "broke neck",
-        "broke ankle",
-        "caught covid",
-        "have chlamydia",
-        "pulled an all nighter",
-        "family vacation",
+        'busses skipped my stop and were delayed',
+        'family emergency',
+        'broke neck',
+        'I was in the hospital',
+        'lost voice',
+        'broke ankle',
+        'no parking available',
+        'broke arm',
+        'too busy with school',
+        'traffic was bad',
+        'injured skateboarding',
+        'family vacation',
+        'sick',
+        'focusing on myself',
+        'dog ate homework',
+        'pulled an all nighter',
+        'broke leg',
+        'medical emergency',
+        'cat ate homework',
+        'dont have time',
+        'have chlamydia',
+        'caught covid'
     ]
 
     function getExcuses(n: number) {
-        const shuffled = excuseList.sort(() => 0.5 - Math.random());
-        return shuffled.slice(0, n);
+        if (i + n > excuseList.length) {
+            setI(0);
+        } else {
+            setI(i + n);
+        }
+        return excuseList.slice(i, i + n);
     }
 
-    const [resList, setResList] = useState(getExcuses(4));
+    const [resList, setResList] = useState(() => getExcuses(4));
 
     function refreshResults() {
         setResList(getExcuses(4));

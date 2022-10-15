@@ -10,7 +10,8 @@ export default function Upload() {
 
     useEffectOnce(() => {
         if (params.text) {
-            getImages(params.text).then(images => setImages(images));
+            getImages(params.text)
+                .then(images => setImages(images));
         }
     });
 
