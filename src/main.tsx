@@ -10,6 +10,7 @@ import Root from "./routes/root";
 import Home from "./routes/Home";
 import Excuses from "./routes/excuses";
 import Upload from './routes/upload';
+import Previous from './routes/previous';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,14 @@ const router = createBrowserRouter([
     children: [{
       path: ':text',
       element: <Upload />
+    }]
+  },
+  {
+    path: "previous",
+    element: <Previous />,
+    children: [{
+      path: ':prev',
+      element: <Previous />
     }]
   }
 ]);

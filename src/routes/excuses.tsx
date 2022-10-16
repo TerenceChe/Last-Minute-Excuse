@@ -95,6 +95,7 @@ export default function Excuses() {
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 {resList.map((text, i) => <Button key={i} onClick={() => select(resLocationList[i])}>{text}</Button>)}
                 <Button variant="outlined" onClick={refreshResults}>New Results</Button>
+                <Button variant="outlined" onClick={() => navigate(`/previous/all`)}>Previous Excuses</Button>
             </div>
         </Container>
 
