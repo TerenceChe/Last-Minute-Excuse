@@ -42,7 +42,12 @@ def main():
     bgdModel = np.zeros((1,65),np.float64)
     fgdModel = np.zeros((1,65),np.float64)
     rect = (int(img.shape[1] / 4), 0, int(img.shape[1] - img.shape[1] / 4) ,img.shape[0])
-    cv2.grabCut(img,mask,rect,bgdModel,fgdModel,7,cv2.GC_INIT_WITH_RECT)
+    newmask = cv2.imread('mask.png',0)
+    # Whenever it is marked black it is the foreground
+    mask[newmask == 0] = 0
+    cv2.grabCut(img,mask,rect,bgdModel,fgdModel,8,cv2.GC_INIT_WITH_RECT)
+
+    # cv2.grabCut(img,mask,None,bgdModel,fgdModel,7,cv2.GC_INIT_WITH_MASK)
     mask2 = np.where((mask==2)|(mask==0),0,1).astype('uint8')
     # Now img is cut so that anything that is not the main character is black
 
