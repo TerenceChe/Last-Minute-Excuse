@@ -8,8 +8,8 @@ import { getImages } from '../api/image-search';
 import { useEffectOnce } from '../hooks/use-effect-once';
 
 const videoConstraints = {
-    width: 1280,
-    height: 720,
+    width: 480,
+    height: 360,
     facingMode: "user"
 };
 
@@ -36,10 +36,10 @@ export default function Upload() {
     return <Container>{loading && <Spinner animation="border"></Spinner>}{!hideWebcam &&
         <div><Webcam
             audio={false}
-            height={720}
+            height={360}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
-            width={1280}
+            width={480}
             videoConstraints={videoConstraints}
         /><Button onClick={capture}>Capture image</Button></div>}{images.map((image, i) => <img key={i} src={image}></img>)}</Container>;
 }
