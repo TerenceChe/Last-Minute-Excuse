@@ -41,8 +41,8 @@ def main():
     mask = np.zeros(img.shape[:2],np.uint8)
     bgdModel = np.zeros((1,65),np.float64)
     fgdModel = np.zeros((1,65),np.float64)
-    rect = (int(img.shape[1] / 4), 0, int(img.shape[1] - img.shape[1] / 4) ,img.shape[0])
-    cv2.grabCut(img,mask,rect,bgdModel,fgdModel,7,cv2.GC_INIT_WITH_RECT)
+    rect = (int(img.shape[1] / 4), 0, img.shape[1] ,img.shape[0])
+    cv2.grabCut(img,mask,rect,bgdModel,fgdModel,10,cv2.GC_INIT_WITH_RECT)
     mask2 = np.where((mask==2)|(mask==0),0,1).astype('uint8')
     # Now img is cut so that anything that is not the main character is black
 

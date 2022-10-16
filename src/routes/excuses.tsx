@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { Container } from '@mui/system';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { createSearchParams, useNavigate } from 'react-router-dom'
 
 export default function Excuses() {
     const navigate = useNavigate();
@@ -86,14 +86,16 @@ export default function Excuses() {
         setResList(getExcuses(4));
     }
 
-    function select(text: string) {
-        navigate(`/upload/${window.encodeURIComponent(text)}`)
+    function select(text: string, realtext: string) {
+        navigate({pathname: `/upload/${window.encodeURIComponent(text)}`, search: createSearchParams({
+            realtext
+        }).toString()})
     }
 
     return (
         <Container>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                {resList.map((text, i) => <Button key={i} onClick={() => select(resLocationList[i])}>{text}</Button>)}
+                {resList.map((text, i) => <Button key={i} onClick={() => select(resLocationList[i], text)}>{text}</Button>)}
                 <Button variant="outlined" onClick={refreshResults}>New Results</Button>
                 <Button variant="outlined" onClick={() => navigate(`/previous/all`)}>Previous Excuses</Button>
             </div>

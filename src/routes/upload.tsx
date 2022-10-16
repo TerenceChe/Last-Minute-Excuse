@@ -1,7 +1,7 @@
 import { Button, CircularProgress } from '@mui/material';
 import { Container } from '@mui/system';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import Webcam from 'react-webcam';
 import { getImages } from '../api/image-search';
 import { useEffectOnce } from '../hooks/use-effect-once';
@@ -15,6 +15,7 @@ const videoConstraints = {
 export default function Upload() {
     const navigate = useNavigate();
     const params = useParams();
+    const [search] = useSearchParams();
     const [images, setImages] = useState<string[]>([]);
     const [hideWebcam, setHideWebcam] = useState<boolean>(false);
     const webcamRef = useRef<Webcam>(null);
@@ -48,5 +49,6 @@ export default function Upload() {
             videoConstraints={videoConstraints}
         /><Button onClick={capture}>Capture image</Button></div>}{images.map((image, i) => <img key={i} src={image}></img>)}
             <Button onClick={() => navigate(`/excuses`)}>Go back</Button>
+            <h1>{search?.get('realtext')}</h1>
         </Container>;
 }
