@@ -1,7 +1,6 @@
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import { Container } from '@mui/system';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
 import Webcam from 'react-webcam';
 import { getImages } from '../api/image-search';
@@ -33,7 +32,7 @@ export default function Upload() {
         }
     };
 
-    return <Container>{loading && <Spinner animation="border"></Spinner>}{!hideWebcam &&
+    return <Container>{loading && <CircularProgress></CircularProgress>}{!hideWebcam &&
         <div><Webcam
             audio={false}
             height={360}
