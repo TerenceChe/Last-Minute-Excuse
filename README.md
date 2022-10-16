@@ -21,6 +21,8 @@ Then copy an image and send it to your friends/family! They'll never think you'r
 2. `pip install -r requirements.txt` (or set up a venv and then do this)
 3. `flask --app server run`
 
+Note: If these commands do not work, try running with py/python/python3 and with/without the -m flag.
+
 Keep the server running in a separate terminal
 
 #### Setup frontend
