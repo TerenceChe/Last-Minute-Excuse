@@ -1,4 +1,10 @@
-# project
+# Last minute Excuse
+
+Have you ever needed an excuse for something at the last minute?????
+
+Well now you can get one easily with our amazing website. Just find a plain background that works when you take a picture, and you'll be placed into whatever excuse you choose!
+
+Then copy an image and send it to your friends/family! They'll never think you're a flake again!!!!
 
 ## SETUP
 
